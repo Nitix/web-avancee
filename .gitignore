@@ -1,0 +1,40 @@
+# Created by http://www.gitignore.io
+
+# TeXlipse plugin
+.texlipse
+
+
+### SublimeText ###
+# workspace files are user-specific
+*.sublime-workspace
+
+# project files should be checked into the repository, unless a significant
+# proportion of contributors will probably not be using SublimeText
+*.sublime-project
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+### Linux ###
+*~
+
+/nbproject/private/
+/nbproject/project.xml
+/nbproject/project.properties
+
+# Created by http://www.gitignore.io
+
+### Composer ###
+composer.phar
+vendor/
+
+# Commit your application's lock file http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
+# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
+# composer.lock
