@@ -16,6 +16,9 @@ class Controller{
 						);
 	}
 
+public function echoJson(){
+	header("Content-type: application/json");
+}
 
 
 public function callAction($param=null){
@@ -37,61 +40,70 @@ public function callAction($param=null){
 	}
 
 	public function defautPage(){
-		return header('Location: web-avancee?a=lt');      
+		header('Location: web-avancee?a=lt');      
   					exit();
 	}
 
 	public function defaut(){
-		return "404 page not found";
+		echo "404 page not found";
 	}
 
 
 
 
 
-public function listetheme($param){
-
-	
-	
+public function listetheme(){
+	$r = new ThemeModel() ;
+	$json = $r->findAll()->getJson();
+	$this->echoJson();
+	echo $json;
 }	
 
 }
 
 public function theme($param){
 	if(!isset($param['id'])){
-		return $this->defaut();
+		echo $this->defaut();
 	}else{
-	
-	
-}	
 
+		$r = new ThemeModel() ;
+		$json = $r->find($param['id'])->getJson();
+		echo $json;
+}	
 }
+
+
 
 public function listeresto($param){
 	if(!isset($param['id'])){
-		return $this->defaut();
+		echo $this->defaut();
 	}else{
 	
-	
+	$r = new ThemeModel() ;
+	$json = $r->findRel($param['id'], 'restos')->getJson();
+	echo $json;
 }	
 
 }
 
-public function rest($param){
+public function resto($param){
 	if(!isset($param['id'])){
-		return $this->defaut();
+		echo $this->defaut();
 	}else{
-	
-	
+	$r = new RestoModel() ;
+	$json = $r->find($param['id'])->getJson();
+	echo $json;
 }	
 
 }
 
 public function listeplat($param){
 	if(!isset($param['id'])){
-		return $this->defaut();
+		echo $this->defaut();
 	}else{
-	
+	$r = new RestoModel() ;
+	$json = $r->find($param['id'])->getJson();
+	echo $json;	
 	
 }	
 
@@ -99,9 +111,11 @@ public function listeplat($param){
 
 public function plat($param){
 	if(!isset($param['id'])){
-		return $this->defaut();
+		echo $this->defaut();
 	}else{
-	
+	$r = new PlatModel() ;
+	$json = $r->find($param['id'])->getJson();
+	echo $json;	
 	
 }	
 
@@ -109,7 +123,7 @@ public function plat($param){
 
 public function ajoutpanier($param){
 	if(!isset($param['id'])){
-		return $this->defaut();
+		echo $this->defaut();
 	}else{
 	
 	
@@ -118,7 +132,7 @@ public function ajoutpanier($param){
 }
 
 public function panier($param){
-
+	echo Cart::get()->
 		
 
 }
