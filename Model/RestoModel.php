@@ -22,22 +22,22 @@ class RestoModel {
     public function find($id) {
         $request = $this->guzzleClient->get(static::$ressourceName . $id);
         $response = $request->send();
-        $this->rawData = $response->json();
-        $this->arrayData = json_decode($this->rawdata);
+        $this->rawData = $response->getBody(true);
+        $this->arrayData = $response->json();
     }
 
     public function findAll() {
         $request = $this->guzzleClient->get(static::$ressourceName);
         $response = $request->send();
-        $this->rawData = $response->json();
-        $this->arrayData = json_decode($this->rawdata);
+        $this->rawData = $response->getBody(true);
+        $this->arrayData = $response->json();
     }
 
     public function findRel($id, $rel) {
         $request = $this->guzzleClient->get(static::$ressourceName . $id . '/' . $rel);
         $response = $request->send();
-        $this->rawData = $response->json();
-        $this->arrayData = json_decode($this->rawdata);
+        $this->rawData = $response->getBody(true);
+        $this->arrayData = $response->json();
     }
 
     public function getJson() {

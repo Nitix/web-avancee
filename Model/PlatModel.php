@@ -5,6 +5,9 @@
  *
  * @author Guillaume
  */
+use Guzzle\Http\Client;
+
+
 class PlatModel {
 
     private $guzzleClient;
@@ -19,24 +22,24 @@ class PlatModel {
 
     public function find($id) {
         $request = $this->guzzleClient->get(static::$ressourceName . $id);
-        $reponse = $request->send();
-        $this->rawData = $reponse->json();
-        $this->arrayData = json_decode($this->rawData);
+        $response = $request->send();
+        $this->rawData = $response->getBody(true);
+        $this->arrayData = $response->json();
     }
 
     public function findAll() {
         $request = $this->guzzleClient->get(static::$ressourceName);
-        $reponse = $request->send();
-        $this->rawData = $reponse->json();
-        $this->arrayData = json_decode($this->rawData);
+        $response = $request->send();
+        $this->rawData = $response->getBody(true);
+        $this->arrayData = $response->json();
     }
 
     public function findRel($id, $relation) {
 
         $request = $this->guzzleClient->get(static::$ressourceName . $id . '/' . $relation);
-        $reponse = $request->send();
-        $this->rawData = $reponse->json();
-        $this->arrayData = json_decode($this->rawData);
+        $response = $request->send();
+        $this->rawData = $response->getBody(true);
+        $this->arrayData = $response->json();
     }
 
     public function getJson() {
