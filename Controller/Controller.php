@@ -40,7 +40,7 @@ class Controller{
     }
 
     public function defautPage(){
-        header('Location: web-avancee?a=lt');
+        header('Location:?a=lt');
         exit();
     }
 
