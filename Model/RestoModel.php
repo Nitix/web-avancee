@@ -32,20 +32,20 @@ class RestoModel {
 	$this->rawData = $response->json();
 	$this->arrayData = json_decode($this->rawdata);
     }
-    
 
     public function findRel($id, $rel) {
-	$request = $this->guzzleClient->get(static::$ressourceName . $id.'/'.$rel);
+	$request = $this->guzzleClient->get(static::$ressourceName . $id . '/' . $rel);
 	$response = $request->send();
 	$this->rawData = $response->json();
 	$this->arrayData = json_decode($this->rawdata);
     }
-    
+
     public function getJson() {
 	return $this->rawData;
     }
 
-    public function getArray(){
+    public function getArray() {
 	return $this->arrayData;
     }
+
 }
