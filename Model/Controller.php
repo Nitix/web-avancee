@@ -46,10 +46,11 @@ public function callAction($param=null){
 	}
 
 
+
+
+
 public function listetheme($param){
-	if(!isset($param['id'])){
-		return $this->defaut();
-	}else{
+
 	
 	
 }	
@@ -117,12 +118,8 @@ public function ajoutpanier($param){
 }
 
 public function panier($param){
-	if(!isset($param['id'])){
-		return $this->defaut();
-	}else{
-	
-	
-}	
+
+		
 
 }
 
