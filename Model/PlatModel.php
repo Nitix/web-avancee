@@ -18,25 +18,25 @@ class PlatModel {
     }
 
     public function find($id) {
-        $this->request = $this->guzzleClient->get(static::$ressourceName . $id);
-        $this->reponse = $request->send();
+        $request = $this->guzzleClient->get(static::$ressourceName . $id);
+        $reponse = $request->send();
         $this->rawData = $reponse->json();
-        $this->arrayData = json_decode($rawData);
+        $this->arrayData = json_decode($this->rawData);
     }
 
     public function findAll() {
-        $this->request = $this->guzzleClient->get(static::$ressourceName);
-        $this->reponse = $request->send();
+        $request = $this->guzzleClient->get(static::$ressourceName);
+        $reponse = $request->send();
         $this->rawData = $reponse->json();
-        $this->arrayData = json_decode($rawData);
+        $this->arrayData = json_decode($this->rawData);
     }
 
     public function findRel($id, $relation) {
 
-        $this->request = $this->guzzleClient->get(static::$ressourceName . $id . '/' . $relation);
-        $this->reponse = $request->send();
+        $request = $this->guzzleClient->get(static::$ressourceName . $id . '/' . $relation);
+        $reponse = $request->send();
         $this->rawData = $reponse->json();
-        $this->arrayData = json_decode($rawData);
+        $this->arrayData = json_decode($this->rawData);
     }
 
     public function getJson() {
