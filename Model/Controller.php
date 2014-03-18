@@ -37,7 +37,7 @@ public function callAction($param=null){
 	}
 
 	public function defautPage(){
-		return header('Location: web-avancee');      
+		return header('Location: web-avancee?a=lt');      
   					exit();
 	}
 
