@@ -8,13 +8,13 @@ class Controller{
             'lt' => 'listetheme',
             't' => 'theme',
             'lr' =>'listeresto',
-            'r' =>'resto'
-						'lp' => 'listeplat',
-						'p' => 'plat',
-						'ac' =>'ajoutpanier',
-						'ag' =>'panier'
-						);
-	}
+            'r' =>'resto',
+            'lp' => 'listeplat',
+            'p' => 'plat',
+            'ac' =>'ajoutpanier',
+            'ag' =>'panier'
+        );
+    }
 
     public function echoJson(){
         header("Content-type: application/json");
@@ -59,92 +59,91 @@ class Controller{
         echo $json;
     }
 
-}
 
-public function theme($param){
-    if(!isset($param['id'])){
-        echo $this->defaut();
-    }else{
+    public function theme($param){
+        if(!isset($param['id'])){
+            echo $this->defaut();
+        }else{
 
-        $r = new ThemeModel() ;
-        $json = $r->find($param['id'])->getJson();
-        $this->returnJson();
-        echo $json;
-    }
-}
-
-
-
-public function listeresto($param){
-    if(!isset($param['id'])){
-        echo $this->defaut();
-    }else{
-
-        $r = new ThemeModel() ;
-        $json = $r->findRel($param['id'], 'restos')->getJson();
-        $this->returnJson();
-        echo $json;
+            $r = new ThemeModel() ;
+            $json = $r->find($param['id'])->getJson();
+            $this->returnJson();
+            echo $json;
+        }
     }
 
-}
 
-public function resto($param){
-    if(!isset($param['id'])){
-        echo $this->defaut();
-    }else{
-        $r = new RestoModel() ;
-        $json = $r->find($param['id'])->getJson();
-        $this->returnJson();
-        echo $json;
-    }
 
-}
+    public function listeresto($param){
+        if(!isset($param['id'])){
+            echo $this->defaut();
+        }else{
 
-public function listeplat($param){
-    if(!isset($param['id'])){
-        echo $this->defaut();
-    }else{
-        $r = new RestoModel() ;
-        $json = $r->find($param['id'])->getJson();
-        $this->returnJson();
-        echo $json;
+            $r = new ThemeModel() ;
+            $json = $r->findRel($param['id'], 'restos')->getJson();
+            $this->returnJson();
+            echo $json;
+        }
 
     }
 
-}
-
-public function plat($param){
-    if(!isset($param['id'])){
-        echo $this->defaut();
-    }else{
-        $r = new PlatModel() ;
-        $json = $r->find($param['id'])->getJson();
-        $this->returnJson();
-        echo $json;
+    public function resto($param){
+        if(!isset($param['id'])){
+            echo $this->defaut();
+        }else{
+            $r = new RestoModel() ;
+            $json = $r->find($param['id'])->getJson();
+            $this->returnJson();
+            echo $json;
+        }
 
     }
 
-}
+    public function listeplat($param){
+        if(!isset($param['id'])){
+            echo $this->defaut();
+        }else{
+            $r = new RestoModel() ;
+            $json = $r->find($param['id'])->getJson();
+            $this->returnJson();
+            echo $json;
 
-public function ajoutpanier($param){
-    if(!isset($param['id'])){
-        echo $this->defaut();
-    }else{
+        }
+
+    }
+
+    public function plat($param){
+        if(!isset($param['id'])){
+            echo $this->defaut();
+        }else{
+            $r = new PlatModel() ;
+            $json = $r->find($param['id'])->getJson();
+            $this->returnJson();
+            echo $json;
+
+        }
+
+    }
+
+    public function ajoutpanier($param){
+        if(!isset($param['id'])){
+            echo $this->defaut();
+        }else{
+            $r = new PlatModel() ;
+            $c= $r->getInstance();
+            echo $this->returnJson();
+            echo $c->add($param);
+
+        }
+
+    }
+
+    public function panier($param){
         $r = new PlatModel() ;
         $c= $r->getInstance();
         echo $this->returnJson();
-        echo $c->add($param);
+        echo $c->get();
 
     }
-
-}
-
-public function panier($param){
-    $r = new PlatModel() ;
-    $c= $r->getInstance();
-    echo $this->returnJson();
-    echo $c->get();
-
-}
 
 }
