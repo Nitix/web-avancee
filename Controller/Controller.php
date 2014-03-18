@@ -16,7 +16,7 @@ class Controller{
         );
     }
 
-    public function echoJson(){
+    public function returnJson(){
         header("Content-type: application/json");
     }
 

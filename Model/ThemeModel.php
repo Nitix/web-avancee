@@ -31,6 +31,7 @@ class ThemeModel {
         $response = $request->send();
         $this->rawData = $response->getBody(true);
         $this->arrayData = $response->json();
+        return $this;
     }
 
     public function findRel($id, $relation) {
