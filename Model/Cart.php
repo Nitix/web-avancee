@@ -7,7 +7,7 @@
  */
 class Cart {
     
-    private static $sessVarName = 'thhstattstftftta';
+    private static $sessVarName = 'thhstezofnzkepftta';
     private $nbItems=0;
     private $total=0;
     private $items=array();
