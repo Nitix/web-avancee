@@ -15,7 +15,7 @@ class Vue{
 		<div class='Accueil'> Mon Resto</div>
 		<div class ='Panier'> panier </div>
 		</nav>
-		".$this->content($param)."</body>
+		</body>
 		</html>"
 	}
 
