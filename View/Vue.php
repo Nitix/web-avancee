@@ -46,9 +46,8 @@ class Vue{
         <div id="panier">
             <img id="fermer" src="datas/images/croix.png" alt="logo">
             <h1>Panier</h1>
-            <ul>
-                <li> Coucou</li>
-            </ul>
+            <table id="panier-contenu">
+            </table>
             <h2>Total</h2>
             <p> vbh</p>
         </div>
