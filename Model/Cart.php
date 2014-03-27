@@ -23,7 +23,7 @@ class Cart {
     public static function getInstance() {
       if (! isset( $_SESSION[static::$sessVarName])) {
          $cart = new Cart();
-         $_SESSION[static::$sessVarName]=$cart;  
+         $_SESSION[static::$sessVarName]=$cart;
       } 
       
       $cart = & $_SESSION[static::$sessVarName];

@@ -119,19 +119,20 @@ class Controller{
         if(!isset($param['id'])){
             echo $this->defaut();
         }else{
-            $r = new PlatModel() ;
+            $r = new Cart() ;
             $c= $r->getInstance();
-            echo $this->returnJson();
-            echo $c->add($param);
-
+            $this->returnJson();
+            $plat = new PlatModel();
+            $c->add($plat->find($param[id])->getArray());
+            echo $c->getShort();
         }
 
     }
 
     public function panier(){
-        $r = new PlatModel() ;
+        $r = new Cart() ;
         $c= $r->getInstance();
-        echo $this->returnJson();
+        $this->returnJson();
         echo $c->get();
     }
 

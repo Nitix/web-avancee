@@ -4,6 +4,8 @@
 
 $(document).ready(function(){
 
+    //Contenu
+
     lr =  function(){
         var id = $(this).data('id');
         $.getJSON("index.php?a=lr&idt="+id, function(res){
@@ -53,7 +55,15 @@ $(document).ready(function(){
         }
     });
 
+    //--------------------
+    //----- Panier -------
+    //--------------------
 
+
+
+
+
+    //Menu du haut
     //HEADER
 
     //quand on click sur le bouton afficher:
