@@ -7,11 +7,12 @@ $(document).ready(function(){
     lr =  function(){
         var id = $(this).data('id');
         $.getJSON("index.php?a=lr&id="+id, function(res){
-            $('section').html("");
+            $('#contenu').html("");
             for(i = 0; i < res.length; i++){
-                var message = $('<div id="element"><span><img src="datas/images/france.png" alt="logo" /><p></p></span></div>');
-                $("section").append(message);
-                message.click(lr);
+                console.log(res[i]);
+                var message = $('<section class="resto" data-id="'+res[i].id+'"><img src="'+res[i].imageUri+'" alt="logo"><div class="resto"><p>'+res[i].nom+'</p><a href="#"> Voir la carte</a></div></section>');
+                $("#contenu").append(message);
+                message.click(lp);
             }
         });
     };
@@ -20,9 +21,12 @@ $(document).ready(function(){
     lp =  function(){
         var id = $(this).data('id');
         $.getJSON("index.php?a=lp&id="+id, function(res){
-            $('section').html("");
+            $('#contenu').html('<div id="resto-list"><img class="visuResto" src="datas/images/" alt="Resto">');
             for(i = 0; i < res.length; i++){
-                baseElemenent(res[i].id, res[i].imageUri, res[i].nom,  res[i].description, "ac");
+                console.log(res[i]);
+                var message = $('<section class="plats"><p> Nom </p><p> Prix</p><input name="number" type="number" value="0" min="0" max="100" step="1"></section>');
+                $("#contenu").append(message);
+                message.click(lp);
             }
         });
     };
@@ -31,20 +35,12 @@ $(document).ready(function(){
 
     $.getJSON("index.php?a=lt", function(res){
         for(i = 0; i < res.length; i++){
+            console.log(res[i]);
             var message = $('<section data-id="'+res[i].id+'"><img src="'+res[i].imageUri+'" alt="logo"><span><img src="'+res[i].imageUri+'" alt="logo" /><p>'+res[i].nom+'</p></span></div>');
             $("#contenu").append(message);
             message.click(lr);
         }
     });
-
-
-    baseElemenent =  function(id, img, nom, description, action){
-        description = typeof description !== 'undefined' ? description : "";
-        var message = $('<div class="element" data-id="'+id+'"><img src="'+img+'" /><span>'+description+nom+'</span></div>');
-        $("section").append(message);
-        message.click(action);
-    };
-
 
 
     //HEADER
