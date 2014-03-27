@@ -28,7 +28,7 @@ $(document).ready(function(){
                 $('#contenu').html('<div id="resto-list"><img class="visuResto" src="'+data.imageUri+'" alt="Resto"></div>');
                 for(i = 0; i < res.length; i++){
                     /*var message = $('<section class="plats"><p>'+res[i].nom+'</p><p>'+res[i].prix+'</p></section>');*/
-                    var message = $('<section class="plats"> <table> <tr> <th>Nom</th> <th>Prix</th> <th>Validation</th> </tr> <tr> <td>'res[i].nom'</td> <td>'res[i].nom'</td>');
+                    var message = $('<section class="plats"> <table> <tr> <th>Nom</th> <th>Prix</th> <th>Validation</th> </tr> <tr> <td>'+res[i].nom+'</td> <td>'+res[i].nom+'</td>');
                     /*var bouton = $('<button data-id="'+res[i].id+'">Ajouter au panier</button>');*/
                     var bouton = $('<td>Envoyer</td>');
                     message.append(bouton);
