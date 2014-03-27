@@ -56,7 +56,7 @@ class Controller{
     }
 
     public function listeToutRestos(){
-        $r = new RestoModel()() ;
+        $r = new RestoModel();
         $json = $r->findAll()->getJson();
         $this->returnJson();
         echo $json;
