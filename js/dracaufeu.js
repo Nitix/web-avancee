@@ -61,10 +61,11 @@ $(document).ready(function(){
             json = '';
         function transformJSON(data){
             $("#panier-contenu").html("<tr><th>Nom</th><th>Prix unitaire</th><th>Quantité</th><th>Total</th></tr>");
-            console.log(data);
-             for(i = 0; i < data.items.length; i++){
-                $("#panier-contenu").append('<tr><td>'+data.items[i].nom+'</td><td>'+data.items[i].pu+'</td><td>'+data.items[i].qte+'</td><td>'+data.items[i].total_items+'</td></tr>');
+             for(var ligne in data.items){
+                 console.log(data.items[ligne]);
+                $("#panier-contenu").append('<tr><td>'+data.items[ligne].nom+'</td><td>'+data.items[ligne].pu+'</td><td>'+data.items[ligne].qte+'</td><td>'+data.items[ligne].total_item+'</td></tr>');
             }
+            $("#panier-contenu").append('<tr class="maxwidth"></tr><tr><td></td><td>Total :</td><td>'+nbitems+'</td><td>'+total+'</td></tr>');
         };
         return {
             show : function(){

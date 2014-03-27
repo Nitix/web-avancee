@@ -48,8 +48,6 @@ class Vue{
             <h1>Panier</h1>
             <table id="panier-contenu">
             </table>
-            <h2>Total</h2>
-            <p> vbh</p>
         </div>
 
         <div id="form">
