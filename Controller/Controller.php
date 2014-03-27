@@ -20,7 +20,6 @@ class Controller{
         header("Content-type: application/json");
     }
 
-
     public function callAction($param=null){
 
         if(isset($param["a"])) { // si $param contient
@@ -40,8 +39,7 @@ class Controller{
     }
 
     public function defautPage(){
-        header('Location:?a=lt');
-        exit();
+        Vue::affiche();
     }
 
     public function defaut(){
@@ -78,9 +76,8 @@ class Controller{
         if(!isset($param['id'])){
             echo $this->defaut();
         }else{
-
             $r = new ThemeModel() ;
-            $json = $r->findRel($param['id'], 'restos')->getJson();
+            $json = $r->findRel($_GET['id'], 'restos')->getJson();
             $this->returnJson();
             echo $json;
         }
@@ -112,7 +109,7 @@ class Controller{
 
     }
 
-    public function plat($param){
+    public function plat(){
         if(!isset($param['id'])){
             echo $this->defaut();
         }else{
@@ -125,7 +122,7 @@ class Controller{
 
     }
 
-    public function ajoutpanier($param){
+    public function ajoutpanier(){
         if(!isset($param['id'])){
             echo $this->defaut();
         }else{
@@ -138,12 +135,11 @@ class Controller{
 
     }
 
-    public function panier($param){
+    public function panier(){
         $r = new PlatModel() ;
         $c= $r->getInstance();
         echo $this->returnJson();
         echo $c->get();
-
     }
 
 }

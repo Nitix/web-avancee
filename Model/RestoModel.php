@@ -10,7 +10,7 @@ use Guzzle\Http\Client;
 class RestoModel {
 
     private $guzzleClient;
-    static private $baseUri = 'https://webetu/www/canals5/crazylunch/';
+    static private $baseUri = 'https://webetu.iutnc.univ-lorraine.fr/www/canals5/crazylunch/';
     static private $ressourceName = "restos/";
     private $arrayData;
     private $rawdata;
