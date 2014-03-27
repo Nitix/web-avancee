@@ -13,7 +13,7 @@ class RestoModel {
     static private $baseUri = 'https://webetu.iutnc.univ-lorraine.fr/www/canals5/crazylunch/';
     static private $ressourceName = "restos/";
     private $arrayData;
-    private $rawdata;
+    private $rawData;
 
     public function __construct() {
         $this->guzzleClient = new Client(static::$baseUri);

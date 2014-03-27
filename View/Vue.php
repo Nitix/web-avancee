@@ -9,16 +9,64 @@ class Vue{
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Mon Resto</title>
+            <!-- style -->
+            <link rel="stylesheet" href="css/style.css"/>
+
+            <!-- title -->
+            <title> EasyLunch </title>
+
+            <!-- meta -->
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta name="description" content="" />
+            <meta name="keywords" content="" />
+            <meta name="HandheldFriendly" content="true">
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+            <!-- script -->
             <script src="js/jquery-1.11.0.min.js"></script>
             <script src="js/dracaufeu.js"></script>
+
         </head>
+
         <body>
         <nav>
-            <div class='Accueil'> Mon Resto</div>
-            <div class ='Panier'> panier </div>
+            <ul>
+                <li class="menu" id="accueil"><a href="index.html">Accueil</a> </li>
+                <li class="menu"><a href="restos.html">Nos Restos</a> </li>
+                <li class="menu"><a href="plats.html">Nos Plats</a> </li>
+                <li ><a href="index.html"><img class="logo" src="datas/images/logo_small.png"></a></li>
+                <li class="afficher_panier"><img src="datas/images/panier.png"></li>
+                <li class="afficher_form"><a href="#"><img src="datas/images/contact.png"></a></li>
+                <li id="afficher"><img id="logo" src="datas/images/logo_small.png" alt="logo"><span><img class="afficher_panier" src="datas/images/panier.png"><img class="afficher_form" src="datas/images/contact.png"></span></li>
+            </ul>
         </nav>
-        <section></section>
+
+        <span id="filter"></span>
+
+        <div id="panier">
+            <img id="fermer" src="datas/images/croix.png" alt="logo">
+            <h1>Panier</h1>
+            <ul>
+                <li> Coucou</li>
+            </ul>
+            <h2>Total</h2>
+            <p> vbh</p>
+        </div>
+
+        <div id="form">
+            <img id="fermer-form" src="datas/images/croix.png" alt="logo">
+            <h1>Contact</h1>
+            <form  method="POST" action="mailto:toto@gmail.com">
+                <!-- --------------Le message----------------------->
+                <input type="text" placeholder="Nom" name="nom" required /><br>
+                <input type="text" placeholder="Mail" name="mail" required /><br>
+                <textarea rows="5" placeholder="Message" name="content_contact">Contenu de votre message </textarea>
+
+                <!-- --------------Bouton envoyer-------------------->
+                <input type="submit" name="submit" value="Envoyer"/>
+            </form>
+        </div>
+        <div id="contenu"></div>
         </body>
         </html>
     <?php

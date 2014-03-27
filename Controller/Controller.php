@@ -101,7 +101,7 @@ class Controller{
             echo $this->defaut();
         }else{
             $r = new RestoModel() ;
-            $json = $r->find($param['id'])->getJson();
+            $json = $r->findRel($param['id'], 'plats')->getJson();
             $this->returnJson();
             echo $json;
 
@@ -113,7 +113,7 @@ class Controller{
         if(!isset($param['id'])){
             echo $this->defaut();
         }else{
-            $r = new PlatModel() ;
+            $r = new RestoModel() ;
             $json = $r->find($param['id'])->getJson();
             $this->returnJson();
             echo $json;
