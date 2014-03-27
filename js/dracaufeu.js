@@ -6,32 +6,43 @@ $(document).ready(function(){
 
     lr =  function(){
         var id = $(this).data('id');
-        $.getJSON("index.php?a=lr&id="+id, function(res){
+        $.getJSON("index.php?a=lr&idt="+id, function(res){
             $('#contenu').html("");
             for(i = 0; i < res.length; i++){
                 console.log(res[i]);
                 var message = $('<section class="resto" data-id="'+res[i].id+'"><img src="'+res[i].imageUri+'" alt="logo"><div class="resto"><p>'+res[i].nom+'</p><a href="#"> Voir la carte</a></div></section>');
                 $("#contenu").append(message);
-                message.click(lp);
+                message.click(lp(res[i]));
             }
         });
     };
 
 
-    lp =  function(){
+    lp =  function(data){
+        //Callback pour passage de paramètre (afin d'alleger le serveur)
+        return function(){
+            var id = $(this).data('id');
+            $.getJSON("index.php?a=lp&idr="+id, function(res){
+                $('#contenu').html('<div id="resto-list"><img class="visuResto" src="'+data.imageUri+'" alt="Resto"></div>');
+                for(i = 0; i < res.length; i++){
+                    console.log(res[i]);
+                    var message = $('<section class="plats"><p> Nom : '+res[i].nom+'</p><p> Prix '+res[i].prix+'</p></section>');
+                    var bouton = $('<button data-id="'+res[i].id+'">Ajouter au panier</button>');
+                    message.append(bouton);
+                    $("#contenu").append(message);
+                    bouton.on('click', ac);
+                }
+            });
+        };
+    };
+
+    ac = function(){
         var id = $(this).data('id');
-        $.getJSON("index.php?a=lp&id="+id, function(res){
-            $('#contenu').html('<div id="resto-list"><img class="visuResto" src="datas/images/" alt="Resto">');
-            for(i = 0; i < res.length; i++){
-                console.log(res[i]);
-                var message = $('<section class="plats"><p> Nom </p><p> Prix</p><input name="number" type="number" value="0" min="0" max="100" step="1"></section>');
-                $("#contenu").append(message);
-                message.click(lp);
-            }
+        $.getJSON("index.php?a=ac&id="+id, function(res){
+            $('#contenu').html('<div id="resto-list"><img class="visuResto" src="'+data.imageUri+'" alt="Resto">');
+            console.log(res[i]);
         });
     };
-
-
 
     $.getJSON("index.php?a=lt", function(res){
         for(i = 0; i < res.length; i++){
@@ -57,7 +68,7 @@ $(document).ready(function(){
             //soit on les masque:
             $("li.menu").slideUp();
             $("body").animate({
-                paddingTop: "6em",
+                paddingTop: "6em"
             }, 300 );
         });
     })

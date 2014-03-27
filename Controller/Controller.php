@@ -66,11 +66,11 @@ class Controller{
     }
 
     public function listeresto($param){
-        if(!isset($param['id'])){
+        if(!isset($param['idt'])){
             echo $this->defaut();
         }else{
             $r = new ThemeModel() ;
-            $json = $r->findRel($_GET['id'], 'restos')->getJson();
+            $json = $r->findRel($_GET['idt'], 'restos')->getJson();
             $this->returnJson();
             echo $json;
         }
@@ -90,11 +90,11 @@ class Controller{
     }
 
     public function listeplat($param){
-        if(!isset($param['id'])){
+        if(!isset($param['idr'])){
             echo $this->defaut();
         }else{
             $r = new RestoModel() ;
-            $json = $r->findRel($param['id'], 'plats')->getJson();
+            $json = $r->findRel($param['idr'], 'plats')->getJson();
             $this->returnJson();
             echo $json;
 
@@ -102,7 +102,7 @@ class Controller{
 
     }
 
-    public function plat(){
+    public function plat($param){
         if(!isset($param['id'])){
             echo $this->defaut();
         }else{
@@ -115,7 +115,7 @@ class Controller{
 
     }
 
-    public function ajoutpanier(){
+    public function ajoutpanier($param){
         if(!isset($param['id'])){
             echo $this->defaut();
         }else{
