@@ -335,6 +335,11 @@ section.plats{
     cursor :default;
 }
 
+.pointer
+{
+    cursor: pointer;
+}
+
 .maxwidth
 {
     height : 24px;

@@ -12,7 +12,9 @@ class Controller{
             'lp' => 'listeplat',
             'p' => 'plat',
             'ac' =>'ajoutpanier',
-            'ag' =>'panier'
+            'ag' =>'panier',
+            'ltp' => 'listeToutPlats',
+            'ltr' => 'listeToutRestos'
         );
     }
 
@@ -44,6 +46,20 @@ class Controller{
 
     public function defaut(){
         echo "404 page not found";
+    }
+
+    public function listeToutPlats(){
+        $r = new PlatsModel() ;
+        $json = $r->findAll()->getJson();
+        $this->returnJson();
+        echo $json;
+    }
+
+    public function listeToutRestos(){
+        $r = new RestoModel()() ;
+        $json = $r->findAll()->getJson();
+        $this->returnJson();
+        echo $json;
     }
 
     public function listetheme(){

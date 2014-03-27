@@ -9,7 +9,6 @@ $(document).ready(function(){
     lr =  function(){
         var id = $(this).data('id');
         $.getJSON("index.php?a=lr&idt="+id, function(res){
-            console.log(res);
             $('#contenu').html("");
             for(i = 0; i < res.length; i++){
                 var message = $('<section class="resto" data-id="'+res[i].id+'"><img src="'+res[i].imageUri+'" alt="logo"><div class="resto"><p>'+res[i].nom+'</p><a href="#"> Voir la carte</a></div></section>');
@@ -26,14 +25,20 @@ $(document).ready(function(){
             var id = $(this).data('id');
             $.getJSON("index.php?a=lp&idr="+id, function(res){
                 $('#contenu').html('<div id="resto-list"><img class="visuResto" src="'+data.imageUri+'" alt="Resto"></div>');
+
+                var section = $('<section class="plats">');
+                var table = $(" <table>");
+
+                $('#contenu').append(section);
+                section.append(table);
+                table.html('<tr> <th>Nom</th> <th>Prix</th> <th>Validation</th> </tr> ');
                 for(i = 0; i < res.length; i++){
-                    /*var message = $('<section class="plats"><p>'+res[i].nom+'</p><p>'+res[i].prix+'</p></section>');*/
-                    var message = $('<section class="plats"> <table> <tr> <th>Nom</th> <th>Prix</th> <th>Validation</th> </tr> <tr> <td>'+res[i].nom+'</td> <td>'+res[i].nom+'</td>');
-                    /*var bouton = $('<button data-id="'+res[i].id+'">Ajouter au panier</button>');*/
-                    var bouton = $('<td>Envoyer</td>');
+
+                    var message = $(' <tr><td>'+res[i].nom+'</td> <td>'+res[i].prix+' €</td></tr>');
+                    var bouton = $('<td class="pointer" data-id="'+res[i].id+'">Ajouter</td>');
+
                     message.append(bouton);
-                    message.append(" </tr></table> </section>")
-                    $("#contenu").append(message);
+                    table.append(message);
                     bouton.on('click', ac);
                 }
             });
@@ -64,8 +69,8 @@ $(document).ready(function(){
             json = '';
         function transformJSON(data){
             $("#panier-contenu").html("<tr><th>Nom</th><th>Prix unitaire</th><th>Quantité</th><th>Total</th></tr>");
-             for(var ligne in data.items){
-                 console.log(data.items[ligne]);
+            for(var ligne in data.items){
+                console.log(data.items[ligne]);
                 $("#panier-contenu").append('<tr><td>'+data.items[ligne].nom+'</td><td>'+data.items[ligne].pu+'</td><td>'+data.items[ligne].qte+'</td><td>'+data.items[ligne].total_item+'</td></tr>');
             }
             $("#panier-contenu").append('<tr class="maxwidth"></tr><tr><td></td><td>Total :</td><td>'+nbitems+'</td><td>'+total+'</td></tr>');
@@ -131,3 +136,16 @@ $(document).ready(function(){
     })
 
 });
+
+
+
+function AfficherMenu(){
+    if(champ.value.length < 2 || champ.value > 25){
+        document.getElementsByClassName("menu").style.border='3px solid rgb(120,0,0)';
+        return (false);
+    }
+    else{
+        document.getElementById(id).style.border='3px solid rgb(0,120,0)';
+        return (true);
+    }
+}
