@@ -1,4 +1,4 @@
 web-avancee
 ===========
 
-Programmation web avancée.
+Programmation web avancée
