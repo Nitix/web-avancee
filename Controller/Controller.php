@@ -46,17 +46,12 @@ class Controller{
         echo "404 page not found";
     }
 
-
-
-
-
     public function listetheme(){
         $r = new ThemeModel() ;
         $json = $r->findAll()->getJson();
         $this->returnJson();
         echo $json;
     }
-
 
     public function theme($param){
         if(!isset($param['id'])){
@@ -69,8 +64,6 @@ class Controller{
             echo $json;
         }
     }
-
-
 
     public function listeresto($param){
         if(!isset($param['id'])){
