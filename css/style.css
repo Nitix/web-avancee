@@ -355,7 +355,7 @@ section.plats p{
 
 section.plats p:nth-child(2){
     width: 10em;
-    overflow-x: scroll;
+    overflow-x: visible;
 }
 
 input[type=number]{
@@ -366,6 +366,14 @@ input[type=number]{
     margin: 0;
     margin-top: 0.4em;
     margin-right: 3.8em;
+    float: right;
+}
+
+input[type=submit]{ 
+
+    font-size: 1em;
+    text-align: center;
+    margin-top: 1em;
     float: right;
 }
 
