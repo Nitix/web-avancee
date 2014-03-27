@@ -27,9 +27,12 @@ $(document).ready(function(){
             $.getJSON("index.php?a=lp&idr="+id, function(res){
                 $('#contenu').html('<div id="resto-list"><img class="visuResto" src="'+data.imageUri+'" alt="Resto"></div>');
                 for(i = 0; i < res.length; i++){
-                    var message = $('<section class="plats"><p> Nom : '+res[i].nom+'</p><p> Prix '+res[i].prix+'</p></section>');
-                    var bouton = $('<button data-id="'+res[i].id+'">Ajouter au panier</button>');
+                    /*var message = $('<section class="plats"><p>'+res[i].nom+'</p><p>'+res[i].prix+'</p></section>');*/
+                    var message = $('<section class="plats"> <table> <tr> <th>Nom</th> <th>Prix</th> <th>Validation</th> </tr> <tr> <td>'res[i].nom'</td> <td>'res[i].nom'</td>');
+                    /*var bouton = $('<button data-id="'+res[i].id+'">Ajouter au panier</button>');*/
+                    var bouton = $('<td>Envoyer</td>');
                     message.append(bouton);
+                    message.append(" </tr></table> </section>")
                     $("#contenu").append(message);
                     bouton.on('click', ac);
                 }
