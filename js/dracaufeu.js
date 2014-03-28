@@ -198,7 +198,9 @@ $(document).ready(function(){
     $("#logo").on('click',function(){
         if(status == 0){
             //soit on fait apparaitre les onglets du menu:
-            $("li.menu").slideDown();
+            $("li.menu").slideDown(function(){
+                $("li.menu").css('display', 'inline-block');
+            });
             $("body").animate({
                 paddingTop: "14em"
             }, 200 );
@@ -206,10 +208,12 @@ $(document).ready(function(){
         }else{
 
             //soit on les masque:
-            $("li.menu").slideUp();
+            $("li.menu").slideUp(function(){
+                $("li.menu").css('display', '');
+            });
             $("body").animate({
                 paddingTop: "6em"
-            }, 300 );
+            }, 200 );
             status = 0;
         }
     });
