@@ -16,11 +16,15 @@ $(document).ready(function(){
     };
 
     $('.linkResto').on('click', function(){
-        $.getJSON("index.php?a=ltr", function(res){
-            ariane.update(1, "Nos Restos");
-            afficheResto(res);
-        });
+        listeResto();
     });
+
+    listeResto = function(){
+        $.getJSON("index.php?a=ltr", function(res){
+            ariane.update(1, "Nos Restos", listeResto, 0);
+            afficheResto(res);
+        };
+    };
 
     afficheResto = function(res){
         $('#contenu').html("");
@@ -194,7 +198,6 @@ $(document).ready(function(){
     $("#logo").on('click',function(){
         if(status == 0){
             //soit on fait apparaitre les onglets du menu:
-            console.log(  $("li.menu"));
             $("li.menu").slideDown();
             $("body").animate({
                 paddingTop: "14em"
