@@ -50,7 +50,7 @@ class Controller{
     }
 
     public function listeToutPlats(){
-        $r = new PlatsModel() ;
+        $r = new PlatModel() ;
         $json = $r->findAll()->getJson();
         $this->returnJson();
         echo $json;

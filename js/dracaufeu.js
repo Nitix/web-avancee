@@ -9,15 +9,24 @@ $(document).ready(function(){
     lr =  function(){
         var id = $(this).data('id');
         $.getJSON("index.php?a=lr&idt="+id, function(res){
-            $('#contenu').html("");
-            for(i = 0; i < res.length; i++){
-                var message = $('<section class="resto" data-id="'+res[i].id+'"><img src="'+res[i].imageUri+'" alt="logo"><div class="resto"><p>'+res[i].nom+'</p><a href="#"> Voir la carte</a></div></section>');
-                $("#contenu").append(message);
-                message.click(lp(res[i]));
-            }
+            afficheResto(res);
         });
     };
 
+    $('.linkResto').on('click', function(){
+        $.getJSON("index.php?a=ltr", function(res){
+            afficheResto(res);
+        });
+    });
+
+    afficheResto = function(res){
+        $('#contenu').html("");
+        for(i = 0; i < res.length; i++){
+            var message = $('<section class="resto" data-id="'+res[i].id+'"><img src="'+res[i].imageUri+'" alt="logo"><div class="resto"><p>'+res[i].nom+'</p><a href="#"> Voir la carte</a></div></section>');
+            $("#contenu").append(message);
+            message.click(lp(res[i]));
+        }
+    };
 
     lp =  function(data){
         //Callback pour passage de paramètre (afin d'alleger le serveur)
@@ -25,29 +34,39 @@ $(document).ready(function(){
             var id = $(this).data('id');
             $.getJSON("index.php?a=lp&idr="+id, function(res){
                 $('#contenu').html('<div id="resto-list"><img class="visuResto" src="'+data.imageUri+'" alt="Resto"></div>');
-
-                var section = $('<section class="plats">');
-                var table = $(" <table>");
-
-                $('#contenu').append(section);
-                section.append(table);
-                table.html('<tr> <th>Nom</th> <th>Prix</th> <th>Validation</th> </tr> ');
-                for(i = 0; i < res.length; i++){
-
-                    var message = $(' <tr><td>'+res[i].nom+'</td> <td>'+res[i].prix+' €</td></tr>');
-                    var bouton = $('<td class="pointer">Ajouter</td>');
-                    var id = res[i].id;
-                    message.append(bouton);
-                    table.append(message);
-                    bouton.on('click', function(){
-                        panier.ajout(id);
-                    });
-                }
+                affichePlats(res);
             });
         };
     };
 
 
+    $('.linkPlats').on('click', function(){
+        $.getJSON("index.php?a=ltp", function(res){
+            $('#contenu').html('');
+            affichePlats(res);
+        });
+    });
+
+
+    affichePlats = function(res){
+        var section = $('<section class="plats">');
+        var table = $(" <table>");
+
+        $('#contenu').append(section);
+        section.append(table);
+        table.html('<tr> <th>Nom</th> <th>Prix</th> <th>Validation</th> </tr> ');
+        for(i = 0; i < res.length; i++){
+
+            var message = $(' <tr><td>'+res[i].nom+'</td> <td>'+res[i].prix+' €</td></tr>');
+            var bouton = $('<td class="pointer">Ajouter</td>');
+            var id = res[i].id;
+            message.append(bouton);
+            table.append(message);
+            bouton.on('click', function(){
+                panier.ajout(id);
+            });
+        }
+    };
 
     $.getJSON("index.php?a=lt", function(res){
         for(i = 0; i < res.length; i++){
@@ -89,6 +108,13 @@ $(document).ready(function(){
         };
     })();
 
+    //Fil d'ariane
+    updateAriane = function(nom, niveau){
+
+    };
+
+
+
     //Menu du haut
     //HEADER
 
@@ -115,33 +141,33 @@ $(document).ready(function(){
         }
     });
 
-//quand on click sur le bouton panier:
-$(".afficher_panier").on('click', function(){
-    panier.show();
-});
+    //quand on click sur le bouton panier:
+    $(".afficher_panier").on('click', function(){
+        panier.show();
+    });
 
-//quand on click sur la croix du panier:
-$("#fermer").on('click',function(){
-    //on fait apparaitre le panier:
-    $("#panier").css("display", "none");
-    //on fait apparaitre le fond gris:
-    $("#filter").css("display", "none");
-})
+    //quand on click sur la croix du panier:
+    $("#fermer").on('click',function(){
+        //on fait apparaitre le panier:
+        $("#panier").css("display", "none");
+        //on fait apparaitre le fond gris:
+        $("#filter").css("display", "none");
+    })
 
-//quand on click sur le bouton form:
-$(".afficher_form").on('click',function(){
-    //on fait apparaitre le panier:
-    $("#form").css("display", "block");
-    //on fait apparaitre le fond gris:
-    $("#filter").css("display", "block");
-})
+    //quand on click sur le bouton form:
+    $(".afficher_form").on('click',function(){
+        //on fait apparaitre le panier:
+        $("#form").css("display", "block");
+        //on fait apparaitre le fond gris:
+        $("#filter").css("display", "block");
+    })
 
-//quand on click sur la croix du panier:
-$("#fermer-form").on('click',function(){
-    //on fait apparaitre le panier:
-    $("#form").css("display", "none");
-    //on fait apparaitre le fond gris:
-    $("#filter").css("display", "none");
-})
+    //quand on click sur la croix du panier:
+    $("#fermer-form").on('click',function(){
+        //on fait apparaitre le panier:
+        $("#form").css("display", "none");
+        //on fait apparaitre le fond gris:
+        $("#filter").css("display", "none");
+    })
 
 });
