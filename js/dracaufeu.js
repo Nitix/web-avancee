@@ -17,7 +17,7 @@ $(document).ready(function(){
 
     $('.linkResto').on('click', function(){
         $.getJSON("index.php?a=ltr", function(res){
-            arian.
+            ariane.update(1, "Nos Restos");
             afficheResto(res);
         });
     });
@@ -47,6 +47,7 @@ $(document).ready(function(){
 
     $('.linkPlats').on('click', function(){
         $.getJSON("index.php?a=ltp", function(res){
+            ariane.update(1, "Nos Plats");
             $('#contenu').html('');
             affichePlats(res);
         });
