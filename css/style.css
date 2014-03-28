@@ -295,9 +295,9 @@ section.resto{
 
 section.resto img{
     display: block;
-    width:13em;
+/*    width:13em;
     height: 6em;
-    margin: 1em;
+    margin: 1em;*/
     background-color: #9a9a9a;
 }
 
