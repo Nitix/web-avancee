@@ -8,13 +8,16 @@ $(document).ready(function(){
 
     lr =  function(){
         var id = $(this).data('id');
+        var nom = $(this).data('nom');
         $.getJSON("index.php?a=lr&idt="+id, function(res){
+            ariane.update(1,nom, lr, id);
             afficheResto(res);
         });
     };
 
     $('.linkResto').on('click', function(){
         $.getJSON("index.php?a=ltr", function(res){
+            arian.
             afficheResto(res);
         });
     });
@@ -22,7 +25,7 @@ $(document).ready(function(){
     afficheResto = function(res){
         $('#contenu').html("");
         for(i = 0; i < res.length; i++){
-            var message = $('<section class="resto" data-id="'+res[i].id+'"><img src="'+res[i].imageUri+'" alt="logo"><div class="resto"><p>'+res[i].nom+'</p><a href="#"> Voir la carte</a></div></section>');
+            var message = $('<section class="resto" data-id="'+res[i].id+'" data-nom="'+res[i].nom+'"><img src="'+res[i].imageUri+'" alt="logo"><div class="resto"><p>'+res[i].nom+'</p><a href="#"> Voir la carte</a></div></section>');
             $("#contenu").append(message);
             message.click(lp(res[i]));
         }
@@ -32,7 +35,9 @@ $(document).ready(function(){
         //Callback pour passage de paramètre (afin d'alleger le serveur)
         return function(){
             var id = $(this).data('id');
+            var nom = $(this).data('nom');
             $.getJSON("index.php?a=lp&idr="+id, function(res){
+                ariane.update(2,nom, lp, id);
                 $('#contenu').html('<div id="resto-list"><img class="visuResto" src="'+data.imageUri+'" alt="Resto"></div>');
                 affichePlats(res);
             });
@@ -56,25 +61,28 @@ $(document).ready(function(){
         section.append(table);
         table.html('<tr> <th>Nom</th> <th>Prix</th> <th>Validation</th> </tr> ');
         for(i = 0; i < res.length; i++){
-
             var message = $(' <tr><td>'+res[i].nom+'</td> <td>'+res[i].prix+' €</td></tr>');
-            var bouton = $('<td class="pointer">Ajouter</td>');
-            var id = res[i].id;
+            var bouton = $('<td class="pointer" data-id="'+res[i].id+'">Ajouter</td>');
             message.append(bouton);
             table.append(message);
             bouton.on('click', function(){
-                panier.ajout(id);
+                panier.ajout($(this).data('id'));
             });
         }
     };
 
-    $.getJSON("index.php?a=lt", function(res){
-        for(i = 0; i < res.length; i++){
-            var message = $('<section data-id="'+res[i].id+'"><img src="'+res[i].imageUri+'" alt="logo"><span><img src="'+res[i].imageUri+'" alt="logo" /><p>'+res[i].nom+'</p></span></div>');
-            $("#contenu").append(message);
-            message.click(lr);
-        }
-    });
+    lt = function(){
+        $.getJSON("index.php?a=lt", function(res){
+            $('#contenu').html('');
+            for(i = 0; i < res.length; i++){
+                var message = $('<section data-id="'+res[i].id+'" data-nom="'+res[i].nom+'"><img src="'+res[i].imageUri+'" alt="logo"><span><img src="'+res[i].imageUri+'" alt="logo" /><p>'+res[i].nom+'</p></span></div>');
+                $("#contenu").append(message);
+                message.click(lr);
+                ariane.delete(0);
+            }
+        });
+    }
+    lt();
 
     //--------------------
     //----- Panier -------
@@ -111,11 +119,70 @@ $(document).ready(function(){
     })();
 
     //Fil d'ariane
-    updateAriane = function(nom, niveau){
+    ariane = (function(){
+        var nomNiveauUn = '',
+            actionNiveauUn = '',
+            idNiveauUn = 0,
+            definedNiveauUn = false,
+            nomNiveauDeux = '',
+            actionNiveauDeux ='',
+            idNiveauDeux= 0,
+            definedNiveauDeux = false;
+        function show(){
+            var un = $('<span class="pointer">Accueil</span>');
+            un.on('click', lt);
+            $("#ariane").html(un);
+            if(definedNiveauUn){
+                var deux = $('<span class="pointer" data-id="'+idNiveauUn+'" data-nom="'+nomNiveauUn+'">'+nomNiveauUn+'</span>');
+                deux.on('click', actionNiveauUn);
+                $("#ariane").append(' / ');
+                $("#ariane").append(deux);
+                if(definedNiveauDeux){
+                    var troix = $('<span class="pointer" data-id="'+idNiveauDeux+'" data-nom="'+nomNiveauDeux+'">'+nomNiveauDeux+'</span>');
+                    troix.on('click', actionNiveauDeux);
+                    $("#ariane").append(' / ');
+                    $("#ariane").append(troix);
+                }
+            }
+        };
+        return {
+            update :function(niveau, nom, action, id){
+                switch(niveau){
+                    case 0:
+                        definedNiveauUn = false;
+                        definedNiveauDeux = false;
+                        break;
+                    case 1 :
+                        definedNiveauUn = true;
+                        definedNiveauDeux = false;
 
-    };
-
-
+                        nomNiveauUn = nom;
+                        actionNiveauUn = action;
+                        idNiveauUn = id;
+                        break;
+                    case 2 :
+                        nomNiveauDeux = nom;
+                        actionNiveauDeux = action;
+                        idNiveauDeux=  id;
+                        definedNiveauDeux = true;
+                        break;
+                }
+                show();
+            },
+            delete :function(niveau){
+                switch(niveau){
+                    case 0:
+                        definedNiveauUn = false;
+                        definedNiveauDeux = false;
+                        break;
+                    case 1 :
+                        definedNiveauDeux = false;
+                        break;
+                }
+                show();
+            }
+        };
+    })();
 
     //Menu du haut
     //HEADER
