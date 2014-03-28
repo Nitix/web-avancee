@@ -31,13 +31,13 @@ class Vue{
         <body>
         <nav>
             <ul>
-                <li class="menu" id="accueil"><a href="index.html">Accueil</a> </li>
+                <li class="menu" id="accueil"><a href="index.php">Accueil</a> </li>
                 <li class="menu restos"><a href="#">Nos Restos</a></li>
                 <li class="menu plats"><a href="#">Nos Plats </a></li>
                 <li ><a href="index.php"><img class="logo" src="datas/images/logo_small.png"></a></li>
                 <li class="afficher_panier"><img src="datas/images/panier.png"><a><div class="small"><?php echo $panier['nb'] . " art<br /> " . $panier['total']?> €</div></a></li>
                 <li class="afficher_form"><a href="#"><img src="datas/images/contact.png"></a></li>
-                <li id="afficher"><img id="logo" src="datas/images/logo_small.png" alt="logo"><span><img class="afficher_panier" src="datas/images/panier.png"><img class="afficher_form" src="datas/images/contact.png"></span></li>
+                <li id="afficher"><img id="logo" src="datas/images/logo_small.png" alt="logo"><span><img class="afficher_panier" src="datas/images/panier.png"><a><div class="small"><?php echo $panier['nb'] . " art<br /> " . $panier['total']?> €</div></a><img class="afficher_form" src="datas/images/contact.png"></span></li>
             </ul>
         </nav>
 

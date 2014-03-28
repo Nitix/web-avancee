@@ -139,7 +139,7 @@ class Controller{
             $c= Cart::getInstance();
             $this->returnJson();
             $plat = new PlatModel();
-            $c->add($plat->find($param[id])->getArray());
+            $c->add($plat->find($param['id'])->getArray());
             echo $c->getShort();
         }
 
