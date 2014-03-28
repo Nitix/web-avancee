@@ -86,9 +86,9 @@ $(document).ready(function(){
         function transformJSON(data){
             $("#panier-contenu").html("<tr><th>Nom</th><th>Prix unitaire</th><th>Quantité</th><th>Total</th></tr>");
             for(var ligne in data.items){
-                $("#panier-contenu").append('<tr><td>'+data.items[ligne].nom+'</td><td>'+data.items[ligne].pu+'</td><td>'+data.items[ligne].qte+'</td><td>'+data.items[ligne].total_item+'</td></tr>');
+                $("#panier-contenu").append('<tr><td>'+data.items[ligne].nom+'</td><td>'+data.items[ligne].pu+' €</td><td>'+data.items[ligne].qte+'</td><td>'+data.items[ligne].total_item+' €</td></tr>');
             }
-            $("#panier-contenu").append('<tr class="maxwidth"></tr><tr><td></td><td>Total :</td><td>'+nbitems+'</td><td>'+total+'</td></tr>');
+            $("#panier-contenu").append('<tr class="maxwidth"></tr><tr><td></td><td>Total :</td><td>'+nbitems+'</td><td>'+total+' €</td></tr>');
         };
         return {
             show : function(){
