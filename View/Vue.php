@@ -31,6 +31,7 @@ class Vue{
         <body>
         <nav>
             <ul>
+                <li class="menu" id="accueil"><a href="index.php">Accueil</a> </li>
                 <li class="menu restos linkResto"><a href="#">Nos Restos</a></li>
                 <li class="menu plats linkPlats"><a href="#">Nos Plats </a></li>
                 <li ><a href="index.php"><img class="logo" src="datas/images/logo_small.png"></a></li>

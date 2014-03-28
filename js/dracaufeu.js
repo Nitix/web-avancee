@@ -210,6 +210,7 @@ $(document).ready(function(){
             //soit on les masque:
             $("li.menu").slideUp(function(){
                 $("li.menu").css('display', '');
+                $("#accueil").css('diplay', 'none');
             });
             $("body").animate({
                 paddingTop: "6em"
