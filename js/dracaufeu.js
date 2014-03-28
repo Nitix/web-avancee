@@ -23,7 +23,7 @@ $(document).ready(function(){
         $.getJSON("index.php?a=ltr", function(res){
             ariane.update(1, "Nos Restos", listeResto, 0);
             afficheResto(res);
-        };
+        });
     };
 
     afficheResto = function(res){
