@@ -42,7 +42,7 @@ body > a{
     background-color: #bababa;
     padding: 2em;
     border-radius: 1em;
-    position: relative;
+    position: fixed;
     top:6em;
     right: 0%;
     left: 0%;
