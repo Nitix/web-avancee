@@ -74,5 +74,11 @@ class Cart {
         $cart['total'] = $this->total;
         return json_encode($cart);
     }
+
+    public function getShortArray() {
+        $cart['nb'] = $this->nbItems;
+        $cart['total'] = $this->total;
+        return $cart;
+    }
 }
 

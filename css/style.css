@@ -335,7 +335,7 @@ section.plats{
     cursor :default;
 }
 
-.pointer
+.pointer, li
 {
     cursor: pointer;
 }
@@ -345,8 +345,15 @@ section.plats{
     height : 24px;
 }
 
+.small
+{
+    width: auto;
+    font-size: 0.8em;
+    vertical-align: top;
+    display: inline-block;
+}
+
 img.visuResto{
-    height: 15em;
     width: 100%;
     background-color: #7f7f7f;
     margin-top: 1em;

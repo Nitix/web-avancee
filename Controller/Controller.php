@@ -41,7 +41,8 @@ class Controller{
     }
 
     public function defautPage(){
-        Vue::affiche();
+        $c = Cart::getInstance();
+        Vue::affiche($c->getShortArray());
     }
 
     public function defaut(){
@@ -135,8 +136,7 @@ class Controller{
         if(!isset($param['id'])){
             echo $this->defaut();
         }else{
-            $r = new Cart() ;
-            $c= $r->getInstance();
+            $c= Cart::getInstance();
             $this->returnJson();
             $plat = new PlatModel();
             $c->add($plat->find($param[id])->getArray());
@@ -146,8 +146,7 @@ class Controller{
     }
 
     public function panier(){
-        $r = new Cart() ;
-        $c= $r->getInstance();
+        $c= Cart::getInstance();
         $this->returnJson();
         echo $c->get();
     }

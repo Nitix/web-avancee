@@ -35,22 +35,19 @@ $(document).ready(function(){
                 for(i = 0; i < res.length; i++){
 
                     var message = $(' <tr><td>'+res[i].nom+'</td> <td>'+res[i].prix+' €</td></tr>');
-                    var bouton = $('<td class="pointer" data-id="'+res[i].id+'">Ajouter</td>');
-
+                    var bouton = $('<td class="pointer">Ajouter</td>');
+                    var id = res[i].id;
                     message.append(bouton);
                     table.append(message);
-                    bouton.on('click', ac);
+                    bouton.on('click', function(){
+                        panier.ajout(id);
+                    });
                 }
             });
         };
     };
 
-    ac = function(){
-        var id = $(this).data('id');
-        $.getJSON("index.php?a=ac&id="+id, function(res){
-            //$('#contenu').html('<div id="resto-list"><img class="visuResto" src="'+res.imageUri+'" alt="Resto">');
-        });
-    };
+
 
     $.getJSON("index.php?a=lt", function(res){
         for(i = 0; i < res.length; i++){
@@ -70,7 +67,6 @@ $(document).ready(function(){
         function transformJSON(data){
             $("#panier-contenu").html("<tr><th>Nom</th><th>Prix unitaire</th><th>Quantité</th><th>Total</th></tr>");
             for(var ligne in data.items){
-                console.log(data.items[ligne]);
                 $("#panier-contenu").append('<tr><td>'+data.items[ligne].nom+'</td><td>'+data.items[ligne].pu+'</td><td>'+data.items[ligne].qte+'</td><td>'+data.items[ligne].total_item+'</td></tr>');
             }
             $("#panier-contenu").append('<tr class="maxwidth"></tr><tr><td></td><td>Total :</td><td>'+nbitems+'</td><td>'+total+'</td></tr>');
@@ -81,71 +77,71 @@ $(document).ready(function(){
                     transformJSON(res);
                     $("#panier").css("display", "block");
                     $("#filter").css("display", "block");
+                })},
+            ajout : function(id){
+                $.getJSON("index.php?a=ac&id="+id, function(res){
+                    total = res.total;
+                    nbitems = res.nb;
+                    $(".small").html(nbitems + ' art<br />' + total +' €');
                 });
+
             }
-        }
+        };
     })();
 
     //Menu du haut
     //HEADER
 
+
     //quand on click sur le bouton afficher:
+    status = 0;
     $("#logo").on('click',function(){
-        $( "#afficher" ).toggle(function() {
+        if(status == 0){
             //soit on fait apparaitre les onglets du menu:
+            console.log(  $("li.menu"));
             $("li.menu").slideDown();
             $("body").animate({
                 paddingTop: "14em"
             }, 200 );
-        }, function() {
+            status = 1;
+        }else{
+
             //soit on les masque:
             $("li.menu").slideUp();
             $("body").animate({
                 paddingTop: "6em"
             }, 300 );
-        });
-    })
-
-    //quand on click sur le bouton panier:
-    $(".afficher_panier").on('click', function(){
-        panier.show();
+            status = 0;
+        }
     });
 
-    //quand on click sur la croix du panier:
-    $("#fermer").on('click',function(){
-        //on fait apparaitre le panier:
-        $("#panier").css("display", "none");
-        //on fait apparaitre le fond gris:
-        $("#filter").css("display", "none");
-    })
-
-    //quand on click sur le bouton form:
-    $(".afficher_form").on('click',function(){
-        //on fait apparaitre le panier:
-        $("#form").css("display", "block");
-        //on fait apparaitre le fond gris:
-        $("#filter").css("display", "block");
-    })
-
-    //quand on click sur la croix du panier:
-    $("#fermer-form").on('click',function(){
-        //on fait apparaitre le panier:
-        $("#form").css("display", "none");
-        //on fait apparaitre le fond gris:
-        $("#filter").css("display", "none");
-    })
-
+//quand on click sur le bouton panier:
+$(".afficher_panier").on('click', function(){
+    panier.show();
 });
 
+//quand on click sur la croix du panier:
+$("#fermer").on('click',function(){
+    //on fait apparaitre le panier:
+    $("#panier").css("display", "none");
+    //on fait apparaitre le fond gris:
+    $("#filter").css("display", "none");
+})
 
+//quand on click sur le bouton form:
+$(".afficher_form").on('click',function(){
+    //on fait apparaitre le panier:
+    $("#form").css("display", "block");
+    //on fait apparaitre le fond gris:
+    $("#filter").css("display", "block");
+})
 
-function AfficherMenu(){
-    if(champ.value.length < 2 || champ.value > 25){
-        document.getElementsByClassName("menu").style.border='3px solid rgb(120,0,0)';
-        return (false);
-    }
-    else{
-        document.getElementById(id).style.border='3px solid rgb(0,120,0)';
-        return (true);
-    }
-}
+//quand on click sur la croix du panier:
+$("#fermer-form").on('click',function(){
+    //on fait apparaitre le panier:
+    $("#form").css("display", "none");
+    //on fait apparaitre le fond gris:
+    $("#filter").css("display", "none");
+})
+
+});
