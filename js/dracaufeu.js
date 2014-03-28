@@ -85,6 +85,8 @@ $(document).ready(function(){
             json = '';
         function transformJSON(data){
             $("#panier-contenu").html("<tr><th>Nom</th><th>Prix unitaire</th><th>Quantité</th><th>Total</th></tr>");
+            total = data.total;
+            nbitems = data.nb;
             for(var ligne in data.items){
                 $("#panier-contenu").append('<tr><td>'+data.items[ligne].nom+'</td><td>'+data.items[ligne].pu+' €</td><td>'+data.items[ligne].qte+'</td><td>'+data.items[ligne].total_item+' €</td></tr>');
             }
