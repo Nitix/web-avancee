@@ -295,9 +295,9 @@ section.resto{
 
 section.resto img{
     display: block;
-    width:13em;
+/*    width:13em;
     height: 6em;
-    margin: 1em;
+    margin: 1em;*/
     background-color: #9a9a9a;
 }
 
@@ -479,7 +479,7 @@ tr:last-of-type td:last-child {
 
 tbody:hover td {
     color: transparent;
-    text-shadow: 0 0 3px #aaa;
+    text-shadow: 0 0 0 #aaa;
 }
 
 tbody:hover tr:hover td {
